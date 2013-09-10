@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-	<head>
-		<title>{{ title }}</title>
-	</head>
-
-	<body>
-		<h1> Hiiii world</h1>
-		<h2> The date and time on this Pi is : {{ time }}</h2>
-	</body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+<h1> Hiiii world</h1>
+<h2> The date and time on this Pi is : {{ time }}</h2>
+{% endblock %}

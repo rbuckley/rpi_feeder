@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<head>
-	<title> {{ title }}</title>
-</head>
-
-<body>
-	<h1>Feeeeeder:</h1>
-	<form action="/feed" method="get">
-		<input type="submit" value="Feed the BEAST"/>
-	</form>
-</body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+<h1>Feeeeeder:</h1>
+<form action="/feed" method="get">
+	<input type="submit" value="Feed the BEAST"/>
+</form>
+{% endblock %}

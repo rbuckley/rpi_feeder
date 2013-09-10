@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from flask import Flask, render_template
+from flask import Flask, render_template, flash, redirect
 
 import datetime
 import servo
@@ -16,7 +16,7 @@ from forms import CronForm
 
 RPIO.setup(25, RPIO.OUT)
 
-@app.route("/")
+@app.route("/index")
 def hello():
 	now = datetime.datetime.now()
 	timeString = now.strftime("%Y-%m-%d %H:%M")
@@ -72,5 +72,8 @@ def light(action):
 @app.route("/cron", methods = ['GET', 'POST'])
 def set_cron():
 	form = CronForm()
+	if form.validate_on_submit():
+		flash('You are trying to name this cron job"' + form.name.data + '"')
+		return redirect('/index')
 	return render_template('cron.html', form = form)
 
