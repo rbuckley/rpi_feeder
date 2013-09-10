@@ -6,11 +6,15 @@ import datetime
 import servo
 import RPIO
 
+# can probably be moved to the cron.py file
 from crontab import CronTab
 
-RPIO.setup(25, RPIO.OUT)
+# app was initialized in the __init__.py file(?)
+from app import app
 
-app = Flask(__name__)
+from forms import CronForm
+
+RPIO.setup(25, RPIO.OUT)
 
 @app.route("/")
 def hello():
@@ -65,9 +69,11 @@ def light(action):
 #	print "turning led " + tData.action
 	return render_template('led.html', **tData)
 
-@app.route("/cron")
+@app.route("/cron", methods = ['GET', 'POST'])
 def set_cron():
-	
+	form = CronForm()
+	return render_template('form.html', form = form)
+
 if __name__ == "__main__":
 	app.run(host='0.0.0.0', port=8080, debug=True)
 

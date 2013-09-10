@@ -1,0 +1,10 @@
+{% block content %}
+<h1>Create a recurring feed</h1>
+<form action="" method="post" name="cron_feed">
+	{{form.hidden_tag()}}
+	<p>
+	Enter a time to feed: {{form.name(size=80)}}<br>
+	</p>
+	<p><input type="submit" value="Submit"></p>
+</form>	
+{% endblock %}
