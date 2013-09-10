@@ -7,7 +7,7 @@ ROLE_ADMIN = 1
 
 class User(db.Model):
     # fields are always of the db.Column class
-    id = db.Column(db.Integer, primate_key = True)
+    id = db.Column(db.Integer, primary_key = True)
     nickname = db.Column(db.String(64), index = True, unique = True)
     role = db.Column(db.SmallInteger, default = ROLE_USER)
 
