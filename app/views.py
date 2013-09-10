@@ -72,8 +72,5 @@ def light(action):
 @app.route("/cron", methods = ['GET', 'POST'])
 def set_cron():
 	form = CronForm()
-	return render_template('form.html', form = form)
-
-if __name__ == "__main__":
-	app.run(host='0.0.0.0', port=8080, debug=True)
+	return render_template('cron.html', form = form)
 
