@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<head>
+	<title>Current Status></title>
+</head>
+
+<body>
+	<h1> The LED is:</h1>
+
+	<p> 
+	{% if action == "on" %}
+		is on (<a href="/led/off">turn off</a>)
+	{% else %}
+		is off (<a href="/led/on">turn on</a>)
+	{% endif %}
+	</p>
+</body>
+</html>
