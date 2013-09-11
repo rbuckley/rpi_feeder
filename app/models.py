@@ -6,6 +6,7 @@ ROLE_USER = 0
 ROLE_ADMIN = 1
 
 class User(db.Model):
+    __tablename__ = 'users'
     # fields are always of the db.Column class
     id = db.Column(db.Integer, primary_key = True)
     nickname = db.Column(db.String(64), index = True, unique = True)

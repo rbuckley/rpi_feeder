@@ -2,7 +2,11 @@ from __future__ import with_statement
 from alembic import context
 from sqlalchemy import engine_from_config, pool
 from logging.config import fileConfig
+import sys, os
 
+sys.path.append(os.getcwd())
+
+from app import app
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
@@ -13,16 +17,15 @@ fileConfig(config.config_file_name)
 
 # add your model's MetaData object here
 # for 'autogenerate' support
-import sys, os
-sys.path.append(os.getcwd())
 
-from app import app
+from app.models import User
 
-alembic_config = config.get_section(config.config_ini_section)
-alembic_config['sqlalchemy.url'] = app.config['SQLALCHEMY_DATABASE_URI']
+User.name = "etd"
+
+#alembic_config = config.get_section(config.config_ini_section)
+#alembic_config['sqlalchemy.url'] = app.config['SQLALCHEMY_DATABASE_URI']
 
 from app import db
-from app.models import User
 target_metadata = db.metadata
 #target_metadata = None
 
@@ -57,7 +60,8 @@ def run_migrations_online():
 
     """
     engine = engine_from_config(
-                alembic_config,
+                #alembic_config,
+                config.get_section(config.config_ini_section),
                 prefix='sqlalchemy.',
                 poolclass=pool.NullPool)
 
