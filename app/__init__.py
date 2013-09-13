@@ -6,8 +6,7 @@ from flask.ext.script import Manager
 import config
 
 # construct a db object for our entire application
-db = SQLAlchemy(app)
-
+db = SQLAlchemy()
 
 def load_models():
     from app import models
@@ -21,7 +20,7 @@ def init_extentions(app):
 def init_views(app):
     from app import views
 
-def create_app(config=config)
+def create_app(config=config):
     app = Flask(__name__)
     app.config.from_object(config)
 
