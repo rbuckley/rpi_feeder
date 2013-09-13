@@ -36,4 +36,4 @@ nosetests.xml
 .pydevproject
 
 # virtual env
-flask
+env

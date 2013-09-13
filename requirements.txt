@@ -1,0 +1,10 @@
+flask
+flask-script
+flask-sqlalchemy
+flask-wtf
+sqlalchemy
+alembic
+
+
+
+

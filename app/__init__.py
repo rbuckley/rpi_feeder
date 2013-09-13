@@ -3,13 +3,13 @@
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.script import Manager
-import config
+from app import config
 
 # construct a db object for our entire application
 db = SQLAlchemy()
 
 def load_models():
-    from app import models
+    from app.users import models
 
 load_models()
 
@@ -19,6 +19,8 @@ def init_extentions(app):
 
 def init_views(app):
     from app import views
+    
+    app.register_blueprint(views.home)
 
 def create_app(config=config):
     app = Flask(__name__)
