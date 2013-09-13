@@ -18,9 +18,11 @@ def init_extentions(app):
 
 
 def init_views(app):
-    from app import views
-    
-    app.register_blueprint(views.home)
+    from app.views import home
+    from app.users.views import bp as userBP
+
+    app.register_blueprint(userBP)
+    app.register_blueprint(home)
 
 def create_app(config=config):
     app = Flask(__name__)
