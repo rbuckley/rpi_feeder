@@ -8,10 +8,13 @@ from app import config
 # construct a db object for our entire application
 db = SQLAlchemy()
 
+
 def load_models():
-    from app.users import models
+    # from app.users import models
+    pass
 
 load_models()
+
 
 def init_extentions(app):
     db.init_app(app)
@@ -19,10 +22,11 @@ def init_extentions(app):
 
 def init_views(app):
     from app.views import home
-    from app.users.views import bp as userBP
+    from app.users.views import BP as userBP
 
     app.register_blueprint(userBP)
     app.register_blueprint(home)
+
 
 def create_app(config=config):
     app = Flask(__name__)

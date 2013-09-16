@@ -14,9 +14,9 @@ class RegisterForm(Form):
     name = TextField('Nickname', [Required()])
     email = TextField('Email Address', [Required(), Email()])
     password = PasswordField('Password', [Required()])
-    confirmPW = PasswordField('Confirm Password', [
-        Required(), 
-        EqualTo('password', message='Passwords must match')
-        ])
-
-
+    confirmPW = PasswordField('Confirm Password',
+                              [
+                                  Required(),
+                                  EqualTo('password', message=
+                                          'Passwords must match')
+                              ])
