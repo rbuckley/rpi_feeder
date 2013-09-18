@@ -13,23 +13,42 @@ class User(db.Model):
     password = db.Column(db.String(120))
     role = db.Column(db.SmallInteger, default=USER.USER)
     status = db.Column(db.SmallInteger, default=USER.NEW)
+    posts = db.relationship('Post', backref='author', lazy='dynamic')
 
-    def __init__(self, name=None, email=None, password=None):
-        self.name = name
-        self.email = email
-        self.password = password
+    def is_authenticated(self):
+        return True
 
-    def getStatus(self):
+    def is_active(self):
+        return True
+
+    def is_anonymous(self):
+        return False
+
+    def get_id(self):
+        return unicode(self.id)
+
+    def get_status(self):
         return USER.STATUS[self.status]
 
-    def getRole(self):
+    def get_role(self):
         return USER.ROLE[self.role]
 
     # this is to tell how to print these objects
     def __repr__(self):
         return '<User %r>' % (self.nickname)
 
-user_group = db.Table("user_group", db.Column("user_id",
-                                              db.Integer,
-                                              db.ForeignKey(User.id),
-                                              primary_key=True))
+    def __init__(self, name=None, email=None, password=None):
+        self.nickname = name
+        self.email = email
+        self.password = password
+
+
+class Post(db.Model):
+    __tablename__ = 'posts'
+    id = db.Column(db.Integer, primary_key=True)
+    body = db.Column(db.String(500))
+    timestamp = db.Column(db.DateTime)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    def __repr__(self):
+        return '<Post %r>' % (self.body)
